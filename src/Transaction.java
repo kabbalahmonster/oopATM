@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Transaction {
 	
-	Date dateTime;
-	String description;
-	Double amount;
+	private Date dateTime;
+	private String description;
+	private Double amount;
 	
-	public Transaction(Date myDateTime, String myDescription, Double myAmount) {
+	public void Transaction(Date myDateTime, String myDescription, Double myAmount) {
 		dateTime = myDateTime;
 		description = myDescription;
 		amount = myAmount;
