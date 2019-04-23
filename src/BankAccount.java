@@ -5,15 +5,15 @@ public class BankAccount {
 	private Double balance;
 	private String description;
 	private Transaction[] transactions;
-	private Double withdrawalFee;
+	protected Double withdrawalFee;
 	
-	protected void BankAccount(String myDescription, Double myBalance) {
+	protected BankAccount(String myDescription, Double myBalance) {
 		description = myDescription;
 		balance = myBalance;
 	}
 	
-	protected void BankAccount(String myDescription) {
-		BankAccount(myDescription, 0.00);
+	protected BankAccount(String myDescription) {
+		this(myDescription, 0.00);
 	}
 	
 	

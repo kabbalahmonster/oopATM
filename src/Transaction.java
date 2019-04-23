@@ -6,7 +6,7 @@ public class Transaction {
 	private String description;
 	private Double amount;
 	
-	public void Transaction(Date myDateTime, String myDescription, Double myAmount) {
+	public Transaction(Date myDateTime, String myDescription, Double myAmount) {
 		dateTime = myDateTime;
 		description = myDescription;
 		amount = myAmount;
