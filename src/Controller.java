@@ -99,7 +99,7 @@ public class Controller {
 		});
 		
 		// -------- select menu buttons
-
+		// adds action listener for accept select
 		atmView.addSelectAcceptListener((ActionEvent e) -> {
 			atmModel.setSelectedAccount(atmView.getSelectAccount());
 			System.out.println(atmModel.getSelectedAccount().getDescription());
@@ -108,7 +108,7 @@ public class Controller {
 			atmView.resetForms();
 			atmModel.saveAccounts();
 		});
-
+		// adds action listener for cancel select
 		atmView.addSelectCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
 			atmView.resetForms();
