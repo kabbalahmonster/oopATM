@@ -1,6 +1,7 @@
+import java.io.*;
 import java.util.*;
 
-public class BankAccount {
+public class BankAccount implements Serializable{
 	// declare variables
 	private int id;
 	protected Double balance;

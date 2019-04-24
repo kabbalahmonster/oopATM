@@ -16,6 +16,13 @@ public class Controller {
 		assignButtons();
 		populateTypes();
 		
+		atmModel.loadAccounts();
+		if (atmModel.getAccounts().size()==0) {
+			atmView.enableAccountButtons(false);
+		} else {
+			atmModel.setSelectedAccount(0);
+		}
+		
 
 		atmView.setVisible(true);
 		
@@ -48,6 +55,7 @@ public class Controller {
 		});
 
 		atmView.addMainCreateListener((ActionEvent e) -> {
+			
 			atmView.changeView("Create");
 		});
 
@@ -84,7 +92,10 @@ public class Controller {
 		});
 
 		atmView.addMainQuitListener((ActionEvent e) -> {
+			atmModel.saveAccounts();
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmView.quitATM();
 		});
 		
 		// -------- select menu buttons
@@ -94,10 +105,14 @@ public class Controller {
 			System.out.println(atmModel.getSelectedAccount().getDescription());
 			
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 
 		atmView.addSelectCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 		
 		// -------- deposit menu buttons
@@ -106,6 +121,8 @@ public class Controller {
 			try {
 				atmModel.makeDeposit(atmView.getDepositDescription(), atmView.getDepositAmount());
 				atmView.changeView("Menu");
+				atmView.resetForms();
+				atmModel.saveAccounts();
 			} catch (Exception x) {
 				atmView.setDepositFeedback("Please fill out all fields appropriately");
 				x.printStackTrace();
@@ -114,6 +131,8 @@ public class Controller {
 
 		atmView.addDepositCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 		
 		// -------- withdraw menu buttons
@@ -122,6 +141,7 @@ public class Controller {
 			try {
 					if(atmModel.makeWithdrawal(atmView.getWithdrawalDescription(), atmView.getWithdrawalAmount())) {
 					atmView.changeView("Menu");
+					atmView.resetForms();
 				} else {
 					atmView.setWithdrawFeedback("Insufficient funds in account");
 				}
@@ -132,6 +152,8 @@ public class Controller {
 
 		atmView.addWithdrawCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 		
 		// -------- create menu buttons
@@ -142,9 +164,16 @@ public class Controller {
 				//System.out.println(atmView.getCreateBalance());
 				//System.out.println(atmModel.getAccounts());
 				//System.out.println(atmView.getCreateType());
+
+				if (atmModel.getAccounts().size()>0) {
+					atmView.enableAccountButtons(true);
+				}		
 				
+				atmModel.setSelectedAccount(0);				
 				
 				atmView.changeView("Menu");
+				atmView.resetForms();
+				atmModel.saveAccounts();
 			} catch (Exception x) {
 				atmView.setCreateFeedback("Please fill out all fields appropriately");
 			}
@@ -153,23 +182,36 @@ public class Controller {
 
 		atmView.addCreateCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 		
 		// -------- delete menu buttons
 
 		atmView.addDeleteAcceptListener((ActionEvent e) -> {
 			atmModel.deleteAccount(atmView.getDeleteAccount());
+			if (atmModel.getAccounts().size()==0) {
+				atmView.enableAccountButtons(false);
+			} else {
+				atmModel.setSelectedAccount(0);
+			}
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 
 		atmView.addDeleteCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 		
 		// -------- transactions menu buttons
 
 		atmView.addTransactionCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
+			atmView.resetForms();
+			atmModel.saveAccounts();
 		});
 	}
 	

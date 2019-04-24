@@ -479,4 +479,32 @@ public class View extends JFrame {
 	public void changeView(String myView) {
 		cardLayout.show(getContentPane(), myView);
 	}
+	
+	// reset all forms
+	public void resetForms() {
+		txtDepositDescription.setText("");
+		txtDepositAmount.setText("");
+		txtWithdrawDescription.setText("");
+		txtWithdrawAmount.setText("");
+		txtTransactionHistory.setText("");
+		txtCreateDescription.setText("");
+		txtCreateBalance.setText("");
+		lblDepositFeedback.setText("");
+		lblWithdrawFeedback.setText("");
+		lblCreateFeedback.setText("");
+		
+	}
+	// disable most menu buttons if no accounts
+	public void enableAccountButtons(Boolean state) {
+		btnMenuSelect.setEnabled(state);
+		btnMenuDelete.setEnabled(state);
+		btnMenuDeposit.setEnabled(state);
+		btnMenuWithdraw.setEnabled(state);
+		btnMenuTransactions.setEnabled(state);
+	}
+	
+	public void quitATM() {
+		this.dispose();
+	}
+	
 }

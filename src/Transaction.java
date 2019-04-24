@@ -1,6 +1,7 @@
 import java.util.*;
+import java.io.*;
 
-public class Transaction {
+public class Transaction implements Serializable {
 	
 	private Date dateTime;
 	private String description;
