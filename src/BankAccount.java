@@ -48,6 +48,8 @@ public class BankAccount implements Serializable{
 	}
 	
 	//----------------------------- public methods
+	
+	// make deposit
 	public void deposit(String myDescription, Double myDeposit) {
 		balance += myDeposit;
 		recordtransaction(new Transaction(new Date(), myDescription, myDeposit));
@@ -61,6 +63,7 @@ public class BankAccount implements Serializable{
 			return false;
 		}
 	}
+	// make withdrawal
 	public void recordtransaction(Transaction myTransaction) {
 		transactions.add(myTransaction);
 		System.out.println(myTransaction.getDescription());

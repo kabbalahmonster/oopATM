@@ -5,8 +5,6 @@ public class Model {
 	
 	private ArrayList<BankAccount> accounts;
 	private BankAccount selectedAccount;	
-	private File file;
-	private File directory;
 	
 	public Model() {		
 		accounts = new ArrayList<BankAccount>(0);
@@ -113,5 +111,28 @@ public class Model {
 			return false;
 		}
 		
+	}
+	
+	// generate transaction history report
+	public String generateReport() {
+
+		String myHistory = "";
+		ArrayList<Transaction> transactions = getSelectedAccount().getTransactions();
+		
+		myHistory += "Account Description : " + getSelectedAccount().getDescription()
+				+ "\nAccount Type : ";
+		if (getSelectedAccount() instanceof AirMilesAccount) {
+			AirMilesAccount myAirMiles = (AirMilesAccount) getSelectedAccount();
+			myHistory += "Air Miles Account\nCurrent Air Miles : " + myAirMiles.getAirMiles() ;				
+		} else {
+			myHistory += "Savings Account";
+		}
+		myHistory += "\nCurrent Balance : $" + String.format("%.2f", getSelectedAccount().getBalance())
+				+ "\nTransactions : ";
+		for (int i = 0; i < transactions.size(); i++) {
+			myHistory += "\n" + transactions.get(i).getDateTime() + " : $" + String.format("%.2f", transactions.get(i).getAmount()) 
+					+ " [" + transactions.get(i).getDescription() + "]";				
+		}
+		return myHistory;
 	}
 }

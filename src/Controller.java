@@ -6,16 +6,20 @@ public class Controller {
 	// declare variables
 	private View atmView;
 	private Model atmModel;
+	//private TextFieldValidator dollarTFV;
+	//private TextFieldValidator stringTFV;
 	
 	public Controller(View myView, Model myModel) {
 		// initialize variables
 		atmView = myView;
 		atmModel = myModel;
+		//dollarTFV.setRegExp("^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$");
 		
 		// atmView.setVisible(true);
 		assignButtons();
 		populateTypes();
 		
+		// load saved accounts if available
 		atmModel.loadAccounts();
 		if (atmModel.getAccounts().size()==0) {
 			atmView.enableAccountButtons(false);
@@ -23,13 +27,10 @@ public class Controller {
 			atmModel.setSelectedAccount(0);
 		}
 		
-
+		// start gui
 		atmView.setVisible(true);
 		
-	}
-	
-	
-	
+	}		
 	
 	
 	//----------------------------- methods
@@ -63,27 +64,10 @@ public class Controller {
 			atmView.setDeleteAccount(atmModel.getAccounts());
 			atmView.changeView("Delete");
 		});
-
+		// construct report
 		atmView.addMainTransactionsListener((ActionEvent e) -> {
-			String myHistory = "";
-			ArrayList<Transaction> transactions = atmModel.getSelectedAccount().getTransactions();
-			
-			myHistory += "Account Description : " + atmModel.getSelectedAccount().getDescription()
-					+ "\nAccount Type : ";
-			if (atmModel.getSelectedAccount() instanceof AirMilesAccount) {
-				AirMilesAccount myAirMiles = (AirMilesAccount) atmModel.getSelectedAccount();
-				myHistory += "Air Miles Account\nCurrent Air Miles : " + myAirMiles.getAirMiles() ;				
-			} else {
-				myHistory += "Savings Account";
-			}
-			myHistory += "\nCurrent Balance : $" + String.format("%.2f", atmModel.getSelectedAccount().getBalance())
-					+ "\nTransactions : ";
-			for (int i = 0; i < transactions.size(); i++) {
-				myHistory += "\n" + transactions.get(i).getDateTime() + " : $" + String.format("%.2f", transactions.get(i).getAmount()) 
-						+ " [" + transactions.get(i).getDescription() + "]";				
-			}
-			
-			atmView.setTransactionHistory(myHistory);
+		
+			atmView.setTransactionHistory(atmModel.generateReport());
 			atmView.changeView("Transactions");
 		});
 

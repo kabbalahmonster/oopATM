@@ -13,7 +13,7 @@ public class View extends JFrame {
 	private JTextField txtWithdrawAmount;
 	private JTextField txtWithdrawDescription;
 	
-	private Model atmModel;
+	
 	private JButton btnMenuCreate;
 	private JButton btnMenuSelect;
 	private JButton btnMenuDeposit;
@@ -42,29 +42,12 @@ public class View extends JFrame {
 	private JTextArea txtTransactionHistory;
 	private JComboBox<String> comboDeleteAccount;
 
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					View frame = new View(atmModel);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
+
 	/**
 	 * Create the frame.
 	 */
 	public View(Model myModel) {
 		// initialize variables
-		atmModel = myModel;
 		
 		String[] accountTypes = new String[] {"Savings", "Air Miles"};
 		
@@ -503,6 +486,7 @@ public class View extends JFrame {
 		btnMenuTransactions.setEnabled(state);
 	}
 	
+	// close the window
 	public void quitATM() {
 		this.dispose();
 	}
