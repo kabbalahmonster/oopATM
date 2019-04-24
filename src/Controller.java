@@ -100,7 +100,7 @@ public class Controller {
 		});
 		
 		// -------- deposit menu buttons
-
+		// accept
 		atmView.addDepositAcceptListener((ActionEvent e) -> {
 			try {
 				atmModel.makeDeposit(atmView.getDepositDescription(), atmView.getDepositAmount());
@@ -112,7 +112,7 @@ public class Controller {
 				x.printStackTrace();
 			}
 		});
-
+		//cancel
 		atmView.addDepositCancelListener((ActionEvent e) -> {
 			atmView.changeView("Menu");
 			atmView.resetForms();

@@ -1,7 +1,7 @@
 import java.util.Date;
 
 public class AirMilesAccount extends BankAccount {
-	
+	// declare variables
 	private int airMilesBalance;
 	private final Double WITHDRAWAL_FEE = 0.75;
 	

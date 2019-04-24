@@ -453,9 +453,7 @@ public class View extends JFrame {
 	
 	public void addTransactionCancelListener(ActionListener transactionCancelActionListener) {
 		btnTransactionCancel.addActionListener(transactionCancelActionListener);
-	}
-	
-	
+	}	
 	
 	
 	//--------------------------------------methods
