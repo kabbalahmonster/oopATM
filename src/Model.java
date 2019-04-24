@@ -52,7 +52,8 @@ public class Model {
 	}
 	
 	// delete an account
-	public void deleteAccount() {
+	public void deleteAccount(int myAccount) {
+		accounts.remove(myAccount);
 		
 	}
 	
@@ -60,10 +61,16 @@ public class Model {
 	public void viewTransactions() {
 		
 	}
-	
+	// make a deposit
 	public void makeDeposit(String myDescription, Double myDeposit) {
 		selectedAccount.deposit(myDeposit);
 		selectedAccount.recordtransaction(new Transaction(new Date(), myDescription, myDeposit));
+		
+	}
+	// make a withdrawal
+	public void makeWithdrawal(String myDescription, Double myWithdrawal) {
+		selectedAccount.withdraw(myWithdrawal);
+		selectedAccount.recordtransaction(new Transaction(new Date(), myDescription, -myWithdrawal));
 		
 	}
 }

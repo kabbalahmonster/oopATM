@@ -40,6 +40,7 @@ public class View extends JFrame {
 	private JLabel lblDepositFeedback;
 	private JLabel lblWithdrawFeedback;
 	private JTextArea txtTransactionHistory;
+	private JComboBox<String> comboDeleteAccount;
 
 	/**
 	 * Launch the application.
@@ -283,7 +284,7 @@ public class View extends JFrame {
 		lblDelete.setBounds(305, 11, 107, 14);
 		panelDelete.add(lblDelete);
 		
-		JComboBox comboDeleteAccount = new JComboBox();
+		comboDeleteAccount = new JComboBox();
 		comboDeleteAccount.setBounds(145, 92, 200, 20);
 		panelDelete.add(comboDeleteAccount);
 		
@@ -342,14 +343,38 @@ public class View extends JFrame {
 	public Double getDepositAmount() {
 		return Double.parseDouble(txtDepositAmount.getText());
 	}
+
+	// withdraw
+	public String getWithdrawalDescription() {
+		return txtWithdrawDescription.getText();
+	}
+	public Double getWithdrawalAmount() {
+		return Double.parseDouble(txtWithdrawAmount.getText());
+	}
+	// select
+	public int getSelectAccount() {
+		return comboSelectAccount.getSelectedIndex();
+	}
+	// delete
+	public int getDeleteAccount() {
+		return comboDeleteAccount.getSelectedIndex();
+	}
 	
 	
 	// ---------------------------------------- sets
 	// -------------------combo boxes
 	// select
 	public void setSelectAccount(ArrayList<BankAccount> myAccounts) {
+		comboSelectAccount.removeAllItems();
 		for (int i = 0; i < myAccounts.size(); i++) {
 			comboSelectAccount.addItem(myAccounts.get(i).getDescription());
+		}	
+	}
+	// delete
+	public void setDeleteAccount(ArrayList<BankAccount> myAccounts) {
+		comboDeleteAccount.removeAllItems();
+		for (int i = 0; i < myAccounts.size(); i++) {
+			comboDeleteAccount.addItem(myAccounts.get(i).getDescription());
 		}	
 	}
 	// -------------------feedback labels

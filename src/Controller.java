@@ -52,6 +52,7 @@ public class Controller {
 		});
 
 		atmView.addMainDeleteListener((ActionEvent e) -> {
+			atmView.setDeleteAccount(atmModel.getAccounts());
 			atmView.changeView("Delete");
 		});
 
@@ -67,10 +68,10 @@ public class Controller {
 			} else {
 				myHistory += "Savings Account";
 			}
-			myHistory += "\nCurrent Balance : $" + Double.toString(atmModel.getSelectedAccount().getBalance())
+			myHistory += "\nCurrent Balance : $" + String.format("%.2f", atmModel.getSelectedAccount().getBalance())
 					+ "\nTransactions : ";
 			for (int i = 0; i < transactions.size(); i++) {
-				myHistory += "\n" + transactions.get(i).getDateTime() + " : $" + transactions.get(i).getAmount() 
+				myHistory += "\n" + transactions.get(i).getDateTime() + " : $" + String.format("%.2f", transactions.get(i).getAmount()) 
 						+ " [" + transactions.get(i).getDescription() + "]";				
 			}
 			
@@ -89,7 +90,7 @@ public class Controller {
 		// -------- select menu buttons
 
 		atmView.addSelectAcceptListener((ActionEvent e) -> {
-			atmModel.setSelectedAccount(0);
+			atmModel.setSelectedAccount(atmView.getSelectAccount());
 			System.out.println(atmModel.getSelectedAccount().getDescription());
 			
 			atmView.changeView("Menu");
@@ -118,6 +119,7 @@ public class Controller {
 		// -------- withdraw menu buttons
 
 		atmView.addWithdrawAcceptListener((ActionEvent e) -> {
+			atmModel.makeWithdrawal(atmView.getWithdrawalDescription(), atmView.getWithdrawalAmount());
 			atmView.changeView("Menu");
 		});
 
@@ -149,6 +151,7 @@ public class Controller {
 		// -------- delete menu buttons
 
 		atmView.addDeleteAcceptListener((ActionEvent e) -> {
+			atmModel.deleteAccount(atmView.getDeleteAccount());
 			atmView.changeView("Menu");
 		});
 

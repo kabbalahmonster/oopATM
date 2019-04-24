@@ -51,7 +51,7 @@ public class BankAccount {
 		balance += myDeposit;
 	}
 	public void withdraw(Double myWithdrawal) {
-		balance -= myWithdrawal;
+		balance -= myWithdrawal + withdrawalFee;
 	}
 	public void recordtransaction(Transaction myTransaction) {
 		transactions.add(myTransaction);
