@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.util.*;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -34,7 +35,11 @@ public class View extends JFrame {
 	private Button btnDeleteCancel;
 	private Button btnTransactionCancel;
 	private JLabel lblCreateFeedback;
-	private JComboBox comboCreateType;
+	private JComboBox<String> comboCreateType;
+	private JComboBox<String> comboSelectAccount;
+	private JLabel lblDepositFeedback;
+	private JLabel lblWithdrawFeedback;
+	private JTextArea txtTransactionHistory;
 
 	/**
 	 * Launch the application.
@@ -57,7 +62,7 @@ public class View extends JFrame {
 	 * Create the frame.
 	 */
 	public View(Model myModel) {
-		
+		// initialize variables
 		atmModel = myModel;
 		
 		String[] accountTypes = new String[] {"Savings", "Air Miles"};
@@ -121,9 +126,9 @@ public class View extends JFrame {
 		lblSelectPanel.setBounds(305, 11, 107, 14);
 		panelSelect.add(lblSelectPanel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(145, 92, 200, 20);
-		panelSelect.add(comboBox);
+		comboSelectAccount = new JComboBox();
+		comboSelectAccount.setBounds(145, 92, 200, 20);
+		panelSelect.add(comboSelectAccount);
 		
 		JLabel lblNewLabel = new JLabel("Select Account :");
 		lblNewLabel.setBounds(34, 95, 101, 14);
@@ -222,7 +227,7 @@ public class View extends JFrame {
 		txtDepositDescription.setBounds(145, 96, 369, 20);
 		panelDeposit.add(txtDepositDescription);
 		
-		JLabel lblDepositFeedback = new JLabel("");
+		lblDepositFeedback = new JLabel("");
 		lblDepositFeedback.setForeground(Color.RED);
 		lblDepositFeedback.setBounds(145, 301, 369, 14);
 		panelDeposit.add(lblDepositFeedback);
@@ -263,7 +268,7 @@ public class View extends JFrame {
 		txtWithdrawDescription.setBounds(145, 96, 369, 20);
 		panelWithdraw.add(txtWithdrawDescription);
 		
-		JLabel lblWithdrawFeedback = new JLabel("");
+		lblWithdrawFeedback = new JLabel("");
 		lblWithdrawFeedback.setForeground(Color.RED);
 		lblWithdrawFeedback.setBounds(145, 301, 369, 14);
 		panelWithdraw.add(lblWithdrawFeedback);
@@ -310,7 +315,7 @@ public class View extends JFrame {
 		btnTransactionCancel.setBounds(62, 431, 70, 22);
 		panelTransactions.add(btnTransactionCancel);
 		
-		JTextArea txtTransactionHistory = new JTextArea();
+		txtTransactionHistory = new JTextArea();
 		txtTransactionHistory.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		txtTransactionHistory.setEditable(false);
 		txtTransactionHistory.setBounds(34, 121, 518, 298);
@@ -325,24 +330,42 @@ public class View extends JFrame {
 		return txtCreateDescription.getText();
 	}
 	public Double getCreateBalance() {
-		Double myBalance = Double.parseDouble(txtCreateBalance.getText());
-		return myBalance;
+		return  Double.parseDouble(txtCreateBalance.getText());
 	}
 	public int getCreateType() {
 		return comboCreateType.getSelectedIndex();
+	}
+	// deposit
+	public String getDepositDescription() {
+		return txtDepositDescription.getText();
+	}
+	public Double getDepositAmount() {
+		return Double.parseDouble(txtDepositAmount.getText());
 	}
 	
 	
 	// ---------------------------------------- sets
 	// -------------------combo boxes
-	
+	// select
+	public void setSelectAccount(ArrayList<BankAccount> myAccounts) {
+		for (int i = 0; i < myAccounts.size(); i++) {
+			comboSelectAccount.addItem(myAccounts.get(i).getDescription());
+		}	
+	}
 	// -------------------feedback labels
+	// create
+	public void setDepositFeedback(String myFeedback) {
+		lblDepositFeedback.setText(myFeedback);
+	}
 	// create
 	public void setCreateFeedback(String myFeedback) {
 		lblCreateFeedback.setText(myFeedback);
 	}
-		
-	
+	// transaction
+	public void setTransactionHistory(String myHistory) {
+		txtTransactionHistory.setText(myHistory);
+	}
+
 	
 	//----------------------------------------action listeners
 	//--------main menu buttons

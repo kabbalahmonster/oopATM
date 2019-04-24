@@ -1,4 +1,5 @@
 import java.awt.event.*;
+import java.util.*;
 
 public class Controller {
 	
@@ -34,6 +35,7 @@ public class Controller {
 		
 		// ------- main menu buttons
 		atmView.addMainSelectListener((ActionEvent e) -> {
+			atmView.setSelectAccount(atmModel.getAccounts());
 			atmView.changeView("Select");
 		});
 
@@ -54,6 +56,25 @@ public class Controller {
 		});
 
 		atmView.addMainTransactionsListener((ActionEvent e) -> {
+			String myHistory = "";
+			ArrayList<Transaction> transactions = atmModel.getSelectedAccount().getTransactions();
+			
+			myHistory += "Account Description : " + atmModel.getSelectedAccount().getDescription()
+					+ "\nAccount Type : ";
+			if (atmModel.getSelectedAccount() instanceof AirMilesAccount) {
+				AirMilesAccount myAirMiles = (AirMilesAccount) atmModel.getSelectedAccount();
+				myHistory += "Air Miles Account\nCurrent Air Miles : " + myAirMiles.getAirMiles() ;				
+			} else {
+				myHistory += "Savings Account";
+			}
+			myHistory += "\nCurrent Balance : $" + Double.toString(atmModel.getSelectedAccount().getBalance())
+					+ "\nTransactions : ";
+			for (int i = 0; i < transactions.size(); i++) {
+				myHistory += "\n" + transactions.get(i).getDateTime() + " : $" + transactions.get(i).getAmount() 
+						+ " [" + transactions.get(i).getDescription() + "]";				
+			}
+			
+			atmView.setTransactionHistory(myHistory);
 			atmView.changeView("Transactions");
 		});
 
@@ -81,7 +102,13 @@ public class Controller {
 		// -------- deposit menu buttons
 
 		atmView.addDepositAcceptListener((ActionEvent e) -> {
-			atmView.changeView("Menu");
+			try {
+				atmModel.makeDeposit(atmView.getDepositDescription(), atmView.getDepositAmount());
+				atmView.changeView("Menu");
+			} catch (Exception x) {
+				atmView.setDepositFeedback("Please fill out all fields appropriately");
+				x.printStackTrace();
+			}
 		});
 
 		atmView.addDepositCancelListener((ActionEvent e) -> {
@@ -104,14 +131,13 @@ public class Controller {
 			try {atmModel.createAccount(atmView.getCreateDescription(), atmView.getCreateBalance(), atmView.getCreateType());
 				System.out.println(atmView.getCreateDescription());
 				System.out.println(atmView.getCreateBalance());
-				System.out.println(atmModel.getAccounts().get(0).getBalance());
 				System.out.println(atmModel.getAccounts());
 				System.out.println(atmView.getCreateType());
 				
 				
 				atmView.changeView("Menu");
 			} catch (Exception x) {
-				atmView.setCreateFeedback("Please fill out both fields appropriately");
+				atmView.setCreateFeedback("Please fill out all fields appropriately");
 			}
 			
 		});

@@ -46,6 +46,7 @@ public class Model {
 		} else {
 			 myAccount = new AirMilesAccount(myDescription, myBalance);
 		}
+		selectedAccount = myAccount;
 		accounts.add(myAccount);
 		
 	}
@@ -57,6 +58,12 @@ public class Model {
 	
 	// retrieve transactions
 	public void viewTransactions() {
+		
+	}
+	
+	public void makeDeposit(String myDescription, Double myDeposit) {
+		selectedAccount.deposit(myDeposit);
+		selectedAccount.recordtransaction(new Transaction(new Date(), myDescription, myDeposit));
 		
 	}
 }

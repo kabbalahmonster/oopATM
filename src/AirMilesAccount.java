@@ -6,7 +6,8 @@ public class AirMilesAccount extends BankAccount {
 	
 	public AirMilesAccount(String myDescription, Double myBalance, int myAirMiles) {
 		super(myDescription, myBalance);
-		airMilesBalance = myAirMiles;		
+		airMilesBalance = myAirMiles;
+		airMilesBalance += (int) (myBalance / 30);
 		withdrawalFee = WITHDRAWAL_FEE;
 	}
 	public AirMilesAccount(String myDescription, Double myBalance) {
@@ -27,5 +28,10 @@ public class AirMilesAccount extends BankAccount {
 	//------------------------------- methods
 	public void addAirMiles(int myMiles) {
 		airMilesBalance += myMiles;
+	}
+	public void deposit(Double myDeposit) {
+		balance += myDeposit;
+		airMilesBalance += (int) (myDeposit / 30);
+		System.out.println(airMilesBalance);
 	}
 }

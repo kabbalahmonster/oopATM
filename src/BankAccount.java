@@ -1,15 +1,17 @@
+import java.util.*;
 
 public class BankAccount {
-	
+	// declare variables
 	private int id;
-	private Double balance;
+	protected Double balance;
 	private String description;
-	private Transaction[] transactions;
+	private ArrayList<Transaction> transactions;
 	protected Double withdrawalFee;
 	
 	protected BankAccount(String myDescription, Double myBalance) {
 		description = myDescription;
 		balance = myBalance;
+		transactions = new ArrayList<Transaction>(0);
 	}
 	
 	protected BankAccount(String myDescription) {
@@ -37,7 +39,7 @@ public class BankAccount {
 	public Double getBalance() {
 		return balance;
 	}
-	public Transaction[] getTransactions() {
+	public ArrayList<Transaction> getTransactions() {
 		return transactions;
 	}
 	public String getDescription() {
@@ -52,6 +54,10 @@ public class BankAccount {
 		balance -= myWithdrawal;
 	}
 	public void recordtransaction(Transaction myTransaction) {
+		transactions.add(myTransaction);
+		System.out.println(myTransaction.getDescription());
+
+		System.out.println(myTransaction);
 		
 	}
 	
