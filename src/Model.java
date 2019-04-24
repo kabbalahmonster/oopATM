@@ -32,7 +32,7 @@ public class Model {
 	public void loadAccounts() {
 		 try
 	        {
-	            FileInputStream fis = new FileInputStream("accountData.txt");
+	            FileInputStream fis = new FileInputStream("accountData.dat");
 	            ObjectInputStream ois = new ObjectInputStream(fis);
 	 
 	            accounts = (ArrayList) ois.readObject();
@@ -63,7 +63,7 @@ public class Model {
 	public void saveAccounts() {
 		 try
 	        {
-	            FileOutputStream fos = new FileOutputStream("accountData.txt");
+	            FileOutputStream fos = new FileOutputStream("accountData.dat");
 	            ObjectOutputStream oos = new ObjectOutputStream(fos);
 	            oos.writeObject(accounts);
 	            oos.close();
