@@ -2,15 +2,18 @@ import java.awt.event.*;
 
 public class Controller {
 	
+	// declare variables
 	private View atmView;
 	private Model atmModel;
 	
 	public Controller(View myView, Model myModel) {
+		// initialize variables
 		atmView = myView;
 		atmModel = myModel;
 		
 		// atmView.setVisible(true);
 		assignButtons();
+		populateTypes();
 		
 
 		atmView.setVisible(true);
@@ -22,6 +25,9 @@ public class Controller {
 	
 	
 	//----------------------------- methods
+	
+	private void populateTypes(){
+	}
 	
 	// assigns functions to all buttons
 	private void assignButtons() {
@@ -62,6 +68,9 @@ public class Controller {
 		// -------- select menu buttons
 
 		atmView.addSelectAcceptListener((ActionEvent e) -> {
+			atmModel.setSelectedAccount(0);
+			System.out.println(atmModel.getSelectedAccount().getDescription());
+			
 			atmView.changeView("Menu");
 		});
 
@@ -92,7 +101,19 @@ public class Controller {
 		// -------- create menu buttons
 
 		atmView.addCreateAcceptListener((ActionEvent e) -> {
-			atmView.changeView("Menu");
+			try {atmModel.createAccount(atmView.getCreateDescription(), atmView.getCreateBalance(), atmView.getCreateType());
+				System.out.println(atmView.getCreateDescription());
+				System.out.println(atmView.getCreateBalance());
+				System.out.println(atmModel.getAccounts().get(0).getBalance());
+				System.out.println(atmModel.getAccounts());
+				System.out.println(atmView.getCreateType());
+				
+				
+				atmView.changeView("Menu");
+			} catch (Exception x) {
+				atmView.setCreateFeedback("Please fill out both fields appropriately");
+			}
+			
 		});
 
 		atmView.addCreateCancelListener((ActionEvent e) -> {

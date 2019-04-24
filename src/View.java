@@ -33,6 +33,8 @@ public class View extends JFrame {
 	private Button btnDeleteAccept;
 	private Button btnDeleteCancel;
 	private Button btnTransactionCancel;
+	private JLabel lblCreateFeedback;
+	private JComboBox comboCreateType;
 
 	/**
 	 * Launch the application.
@@ -57,6 +59,8 @@ public class View extends JFrame {
 	public View(Model myModel) {
 		
 		atmModel = myModel;
+		
+		String[] accountTypes = new String[] {"Savings", "Air Miles"};
 		
 		
 		
@@ -143,8 +147,8 @@ public class View extends JFrame {
 		lblCreatePanel.setBounds(305, 11, 107, 14);
 		panelCreate.add(lblCreatePanel);
 		
-		JComboBox comboCreateType = new JComboBox();
-		comboCreateType.setBounds(145, 95, 200, 14);
+		comboCreateType = new JComboBox(accountTypes);
+		comboCreateType.setBounds(145, 95, 200, 22);
 		panelCreate.add(comboCreateType);
 		
 		JLabel lblCreateType = new JLabel("Account Type : ");
@@ -163,7 +167,7 @@ public class View extends JFrame {
 		lblDescription.setBounds(34, 187, 87, 14);
 		panelCreate.add(lblDescription);
 		
-		JLabel lblCreateBalance = new JLabel("Starting Balance ($) :");
+		JLabel lblCreateBalance = new JLabel("Starting Balance :");
 		lblCreateBalance.setBounds(34, 249, 107, 14);
 		panelCreate.add(lblCreateBalance);
 		
@@ -177,7 +181,7 @@ public class View extends JFrame {
 		panelCreate.add(txtCreateDescription);
 		txtCreateDescription.setColumns(10);
 		
-		JLabel lblCreateFeedback = new JLabel("");
+		lblCreateFeedback = new JLabel("");
 		lblCreateFeedback.setForeground(Color.RED);
 		lblCreateFeedback.setBounds(145, 301, 369, 14);
 		panelCreate.add(lblCreateFeedback);
@@ -313,7 +317,31 @@ public class View extends JFrame {
 		panelTransactions.add(txtTransactionHistory);
 	}
 	
+	// ------------------------------------------gets
 	
+	// ----------------text fields
+	// create
+	public String getCreateDescription() {
+		return txtCreateDescription.getText();
+	}
+	public Double getCreateBalance() {
+		Double myBalance = Double.parseDouble(txtCreateBalance.getText());
+		return myBalance;
+	}
+	public int getCreateType() {
+		return comboCreateType.getSelectedIndex();
+	}
+	
+	
+	// ---------------------------------------- sets
+	// -------------------combo boxes
+	
+	// -------------------feedback labels
+	// create
+	public void setCreateFeedback(String myFeedback) {
+		lblCreateFeedback.setText(myFeedback);
+	}
+		
 	
 	
 	//----------------------------------------action listeners
