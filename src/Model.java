@@ -63,14 +63,16 @@ public class Model {
 	}
 	// make a deposit
 	public void makeDeposit(String myDescription, Double myDeposit) {
-		selectedAccount.deposit(myDeposit);
-		selectedAccount.recordtransaction(new Transaction(new Date(), myDescription, myDeposit));
+		selectedAccount.deposit(myDescription, myDeposit);
 		
 	}
 	// make a withdrawal
-	public void makeWithdrawal(String myDescription, Double myWithdrawal) {
-		selectedAccount.withdraw(myWithdrawal);
-		selectedAccount.recordtransaction(new Transaction(new Date(), myDescription, -myWithdrawal));
+	public boolean makeWithdrawal(String myDescription, Double myWithdrawal) {
+		if(selectedAccount.withdraw(myDescription, myWithdrawal)) {
+			return true;
+		} else {
+			return false;
+		}
 		
 	}
 }

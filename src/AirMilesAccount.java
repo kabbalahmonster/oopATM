@@ -1,3 +1,4 @@
+import java.util.Date;
 
 public class AirMilesAccount extends BankAccount {
 	
@@ -29,9 +30,10 @@ public class AirMilesAccount extends BankAccount {
 	public void addAirMiles(int myMiles) {
 		airMilesBalance += myMiles;
 	}
-	public void deposit(Double myDeposit) {
+	public void deposit(String myDescription, Double myDeposit) {
 		balance += myDeposit;
 		airMilesBalance += (int) (myDeposit / 30);
-		System.out.println(airMilesBalance);
+		recordtransaction(new Transaction(new Date(), myDescription, myDeposit));
+		//System.out.println(airMilesBalance);
 	}
 }

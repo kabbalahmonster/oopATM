@@ -119,8 +119,15 @@ public class Controller {
 		// -------- withdraw menu buttons
 
 		atmView.addWithdrawAcceptListener((ActionEvent e) -> {
-			atmModel.makeWithdrawal(atmView.getWithdrawalDescription(), atmView.getWithdrawalAmount());
-			atmView.changeView("Menu");
+			try {
+					if(atmModel.makeWithdrawal(atmView.getWithdrawalDescription(), atmView.getWithdrawalAmount())) {
+					atmView.changeView("Menu");
+				} else {
+					atmView.setWithdrawFeedback("Insufficient funds in account");
+				}
+			} catch (Exception x) {
+				atmView.setWithdrawFeedback("Please fill out all fields appropriately");				
+			}	
 		});
 
 		atmView.addWithdrawCancelListener((ActionEvent e) -> {
@@ -131,10 +138,10 @@ public class Controller {
 
 		atmView.addCreateAcceptListener((ActionEvent e) -> {
 			try {atmModel.createAccount(atmView.getCreateDescription(), atmView.getCreateBalance(), atmView.getCreateType());
-				System.out.println(atmView.getCreateDescription());
-				System.out.println(atmView.getCreateBalance());
-				System.out.println(atmModel.getAccounts());
-				System.out.println(atmView.getCreateType());
+				//System.out.println(atmView.getCreateDescription());
+				//System.out.println(atmView.getCreateBalance());
+				//System.out.println(atmModel.getAccounts());
+				//System.out.println(atmView.getCreateType());
 				
 				
 				atmView.changeView("Menu");

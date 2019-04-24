@@ -390,6 +390,11 @@ public class View extends JFrame {
 	public void setTransactionHistory(String myHistory) {
 		txtTransactionHistory.setText(myHistory);
 	}
+	// withdraw
+	public void setWithdrawFeedback(String myFeedback) {
+		lblWithdrawFeedback.setText(myFeedback);
+	}
+	
 
 	
 	//----------------------------------------action listeners

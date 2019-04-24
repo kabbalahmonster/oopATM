@@ -47,11 +47,18 @@ public class BankAccount {
 	}
 	
 	//----------------------------- public methods
-	public void deposit(Double myDeposit) {
+	public void deposit(String myDescription, Double myDeposit) {
 		balance += myDeposit;
+		recordtransaction(new Transaction(new Date(), myDescription, myDeposit));
 	}
-	public void withdraw(Double myWithdrawal) {
-		balance -= myWithdrawal + withdrawalFee;
+	public boolean withdraw(String myDescription, Double myWithdrawal) {
+		if(myWithdrawal <= balance){
+			balance -= myWithdrawal + withdrawalFee;
+			recordtransaction(new Transaction(new Date(), myDescription, -myWithdrawal));
+			return true;
+		} else {
+			return false;
+		}
 	}
 	public void recordtransaction(Transaction myTransaction) {
 		transactions.add(myTransaction);
