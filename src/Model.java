@@ -10,12 +10,6 @@ public class Model {
 	
 	public Model() {		
 		accounts = new ArrayList<BankAccount>(0);
-		// initialize save file and folder
-		file = new File("accountRecord.txt");
-		directory = new File(System.getProperty("user.home"));
-		String filenames[] = directory.list();
-		System.out.println("Directory: " + directory.getName());
-		System.out.println("Full path to file: " + file.getAbsolutePath());
 	}
 	
 	//---------------------------------------------gets
@@ -40,10 +34,10 @@ public class Model {
 	public void loadAccounts() {
 		 try
 	        {
-	            FileInputStream fis = new FileInputStream("employeeData");
+	            FileInputStream fis = new FileInputStream("accountData.txt");
 	            ObjectInputStream ois = new ObjectInputStream(fis);
 	 
-	            accounts = (ArrayList<BankAccount>) ois.readObject();
+	            accounts = (ArrayList) ois.readObject();
 	 
 	            ois.close();
 	            fis.close();
@@ -71,7 +65,7 @@ public class Model {
 	public void saveAccounts() {
 		 try
 	        {
-	            FileOutputStream fos = new FileOutputStream("employeeData");
+	            FileOutputStream fos = new FileOutputStream("accountData.txt");
 	            ObjectOutputStream oos = new ObjectOutputStream(fos);
 	            oos.writeObject(accounts);
 	            oos.close();

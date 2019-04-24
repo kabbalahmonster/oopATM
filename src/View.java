@@ -94,7 +94,7 @@ public class View extends JFrame {
 		panelMenu.add(btnMenuSelect);
 		
 		JLabel lblMenu = new JLabel("ATM Menu");
-		lblMenu.setBounds(310, 11, 97, 14);
+		lblMenu.setBounds(243, 11, 97, 14);
 		panelMenu.add(lblMenu);
 		
 		btnMenuDeposit = new JButton("Deposit");
@@ -124,7 +124,7 @@ public class View extends JFrame {
 		getContentPane().add(panelSelect, "Select");
 		
 		JLabel lblSelectPanel = new JLabel("Select Panel");
-		lblSelectPanel.setBounds(305, 11, 107, 14);
+		lblSelectPanel.setBounds(238, 11, 107, 14);
 		panelSelect.add(lblSelectPanel);
 		
 		comboSelectAccount = new JComboBox();
@@ -150,7 +150,7 @@ public class View extends JFrame {
 		getContentPane().add(panelCreate, "Create");
 		
 		JLabel lblCreatePanel = new JLabel("Create Panel");
-		lblCreatePanel.setBounds(305, 11, 107, 14);
+		lblCreatePanel.setBounds(238, 11, 107, 14);
 		panelCreate.add(lblCreatePanel);
 		
 		comboCreateType = new JComboBox(accountTypes);
@@ -173,17 +173,17 @@ public class View extends JFrame {
 		lblDescription.setBounds(34, 187, 87, 14);
 		panelCreate.add(lblDescription);
 		
-		JLabel lblCreateBalance = new JLabel("Starting Balance :");
-		lblCreateBalance.setBounds(34, 249, 107, 14);
+		JLabel lblCreateBalance = new JLabel("Starting Balance ($) :");
+		lblCreateBalance.setBounds(34, 249, 129, 14);
 		panelCreate.add(lblCreateBalance);
 		
 		txtCreateBalance = new JTextField();
-		txtCreateBalance.setBounds(145, 246, 86, 20);
+		txtCreateBalance.setBounds(163, 249, 86, 20);
 		panelCreate.add(txtCreateBalance);
 		txtCreateBalance.setColumns(10);
 		
 		txtCreateDescription = new JTextField();
-		txtCreateDescription.setBounds(145, 184, 369, 20);
+		txtCreateDescription.setBounds(163, 187, 369, 20);
 		panelCreate.add(txtCreateDescription);
 		txtCreateDescription.setColumns(10);
 		
@@ -199,7 +199,7 @@ public class View extends JFrame {
 		getContentPane().add(panelDeposit, "Deposit");
 		
 		JLabel lblDeposit = new JLabel("Deposit");
-		lblDeposit.setBounds(305, 11, 107, 14);
+		lblDeposit.setBounds(238, 11, 107, 14);
 		panelDeposit.add(lblDeposit);
 		
 		btnDepositAccept = new Button("Deposit");
@@ -215,17 +215,17 @@ public class View extends JFrame {
 		panelDeposit.add(lblDepositDescription);
 		
 		JLabel lblDepositAmount = new JLabel("Deposit Amount ($) :");
-		lblDepositAmount.setBounds(34, 171, 107, 14);
+		lblDepositAmount.setBounds(34, 171, 116, 14);
 		panelDeposit.add(lblDepositAmount);
 		
 		txtDepositAmount = new JTextField();
 		txtDepositAmount.setColumns(10);
-		txtDepositAmount.setBounds(145, 168, 86, 20);
+		txtDepositAmount.setBounds(160, 171, 86, 20);
 		panelDeposit.add(txtDepositAmount);
 		
 		txtDepositDescription = new JTextField();
 		txtDepositDescription.setColumns(10);
-		txtDepositDescription.setBounds(145, 96, 369, 20);
+		txtDepositDescription.setBounds(160, 99, 369, 20);
 		panelDeposit.add(txtDepositDescription);
 		
 		lblDepositFeedback = new JLabel("");
@@ -240,7 +240,7 @@ public class View extends JFrame {
 		getContentPane().add(panelWithdraw, "Withdraw");
 		
 		JLabel lblWithdraw = new JLabel("Withdraw");
-		lblWithdraw.setBounds(305, 11, 107, 14);
+		lblWithdraw.setBounds(238, 11, 107, 14);
 		panelWithdraw.add(lblWithdraw);
 		
 		btnWithdrawAccept = new Button("Withdraw");
@@ -256,17 +256,17 @@ public class View extends JFrame {
 		panelWithdraw.add(lblWithdrawDescription);
 		
 		JLabel lblWithdrawAmount = new JLabel("Withdraw Amount ($) :");
-		lblWithdrawAmount.setBounds(34, 171, 121, 14);
+		lblWithdrawAmount.setBounds(34, 171, 137, 14);
 		panelWithdraw.add(lblWithdrawAmount);
 		
 		txtWithdrawAmount = new JTextField();
 		txtWithdrawAmount.setColumns(10);
-		txtWithdrawAmount.setBounds(145, 168, 86, 20);
+		txtWithdrawAmount.setBounds(170, 171, 86, 20);
 		panelWithdraw.add(txtWithdrawAmount);
 		
 		txtWithdrawDescription = new JTextField();
 		txtWithdrawDescription.setColumns(10);
-		txtWithdrawDescription.setBounds(145, 96, 369, 20);
+		txtWithdrawDescription.setBounds(170, 99, 369, 20);
 		panelWithdraw.add(txtWithdrawDescription);
 		
 		lblWithdrawFeedback = new JLabel("");
@@ -281,7 +281,7 @@ public class View extends JFrame {
 		getContentPane().add(panelDelete, "Delete");
 		
 		JLabel lblDelete = new JLabel("Delete Account");
-		lblDelete.setBounds(305, 11, 107, 14);
+		lblDelete.setBounds(238, 11, 107, 14);
 		panelDelete.add(lblDelete);
 		
 		comboDeleteAccount = new JComboBox();
@@ -305,7 +305,7 @@ public class View extends JFrame {
 		panelTransactions.setLayout(null);
 		
 		JLabel lblAccountTransactions = new JLabel("Account Transactions");
-		lblAccountTransactions.setBounds(305, 11, 107, 14);
+		lblAccountTransactions.setBounds(238, 11, 139, 14);
 		panelTransactions.add(lblAccountTransactions);
 		
 		JLabel lblTransactionHistory = new JLabel("Transaction History : ");
