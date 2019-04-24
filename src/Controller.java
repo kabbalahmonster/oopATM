@@ -153,7 +153,7 @@ public class Controller {
 					atmView.enableAccountButtons(true);
 				}		
 				
-				atmModel.setSelectedAccount(0);				
+				atmModel.setSelectedAccount(atmModel.getAccounts().size()-1);				
 				
 				atmView.changeView("Menu");
 				atmView.resetForms();

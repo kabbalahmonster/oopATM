@@ -119,8 +119,11 @@ public class Model {
 		String myHistory = "";
 		ArrayList<Transaction> transactions = getSelectedAccount().getTransactions();
 		
+		// put all the info together into a string
 		myHistory += "Account Description : " + getSelectedAccount().getDescription()
 				+ "\nAccount Type : ";
+		
+		// account for account differences
 		if (getSelectedAccount() instanceof AirMilesAccount) {
 			AirMilesAccount myAirMiles = (AirMilesAccount) getSelectedAccount();
 			myHistory += "Air Miles Account\nCurrent Air Miles : " + myAirMiles.getAirMiles() ;				
